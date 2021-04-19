@@ -6,6 +6,7 @@ import matter from "gray-matter";
 import marked from "marked";
 import Navigation from '../../components/navigation/Navigation';
 import Header from '../../components/main/Header';
+import Hashtag from "../../components/main/Hashtag"
 import Footer from '../../components/navigation/Footer';
 
 const Project = ({htmlString,data}) => {
@@ -19,8 +20,15 @@ const Project = ({htmlString,data}) => {
         <Navigation/>
         <div className="c-header__container">
             <Header header={data.title}/>
+            <div className="c-header__tags">
+              {
+                data.tags.map((tag, index) => (
+                  <Hashtag key={index} tag={tag}/>
+                ))
+              }
+            </div>
         </div>
-        <div className="c-project-page" dangerouslySetInnerHTML={{__html: htmlString}}> 
+        <div className="c-project-page markdown-body" dangerouslySetInnerHTML={{__html: htmlString}}> 
         </div>
       </div>
       <Footer/>
@@ -34,23 +42,22 @@ const Project = ({htmlString,data}) => {
 export const getStaticPaths = async () => {
 
   const files = fs.readdirSync('projects');
-  
+
+
   const paths = files.map(filename => ({
     params: {
       project: filename.replace(".md", "")
     }
   }))
-  console.log(files);
-  console.log(paths);
 
   return {
     paths: paths,
     fallback: false
   }
-
 }
 
 export const getStaticProps = async ({params: {project}}) => {
+
 
   const markdownWithMeta = fs.readFileSync(path.join('projects', project + ".md")).toString();
   const parsedMarkdown = matter(markdownWithMeta);

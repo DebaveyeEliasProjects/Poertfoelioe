@@ -8,6 +8,8 @@
   --light-hover:#f3f3f3;
   --dark-hover:#16151a;
 
+  --accent: #7cbae6;
+
   --font-dark:#2E2A40;
   --font-hashtag: #424051;
   --header-clearance: 100px
@@ -70,11 +72,21 @@ body {
 .c-navigation__link {
   color: var(--dark);
   font-size: 1rem;
+  border-bottom: 0px solid var(--dark);
+  transition: border 0.15s ease;
 }
 .c-navigation__link-dark {
   color: var(--light);
   font-size:1rem;
+  border-bottom: 0px solid var(--light);
+  transition: border 0.15s ease;
 }
+
+.c-navigation__link:hover, .c-navigation__link-dark:hover{
+  cursor: pointer;
+  border-bottom-width: 2px;
+}
+
 .c-navigation__button {
   color: var(--light);
   background-color: var(--dark);
@@ -169,6 +181,13 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.c-project__image-holder{
+  max-height: 20rem;
+  background-size: contain;
+  overflow: hidden;
+  background-position: center;
+}
+
 .c-project__info{
   padding: 0.5rem;
 }
@@ -195,15 +214,67 @@ body {
   width: fit-content;
 }
 
+.c-project__readmore:hover{
+  cursor: pointer;
+}
+
 .c-projects__seemore {
   margin-bottom: 0 auto;
   display: flex;
   justify-content: center;
 }
 
-.c-project-page{
-  color: var(--dark);
+
+
+.markdown-body {
+  color:var(--dark) !important;
+  font-family: "Source Sans Pro" !important;
 }
+
+.markdown-body pre, .markdown-body table {
+  color: #16151a;
+}
+
+.markdown-body a {
+  color: var(--accent) !important;
+}
+
+.markdown-body img {
+  color: transparent;
+  background-color: transparent;
+}
+
+/* 
+.c-project-page h1{
+  font-size: 2.75rem;
+  margin-bottom: 1rem;
+}
+.c-project-page h2{
+  font-size: 2.25rem;
+  margin-bottom: 1rem;
+  
+}
+.c-project-page h3{
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+.c-project-page h4{
+  font-size: 1.50rem;
+  margin-bottom: 1rem;
+}
+.c-project-page h5{
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+.c-project-page h6{
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+}
+
+.c-project-page hr{
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+} */
 
 /*  */
 /* FOOTER */
@@ -231,6 +302,14 @@ body {
   flex-direction: column;
 }
 
+.c-date{
+  color: var(--font-hashtag);
+  font-weight: 500;
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
 @media (prefers-color-scheme: dark) {
 
   :root{
@@ -241,6 +320,7 @@ body {
     --light-hover: #16151a;
 
     --font-dark: #ffffff;
+    --font-hashtag: #676670;
   }
 
 }

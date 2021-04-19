@@ -2,13 +2,8 @@ import React, {useEffect, useState} from 'react'
 import Link from "next/link"
 
 export default function Project(props) {
-  const [link, setLink] = useState("/")
 
   useEffect(() => {
-    let name = props.title
-    let x = name.split(" ").join("-")
-    console.log(x);
-    setLink(`/${x}`)
   }, [])
 
   return (
@@ -18,8 +13,9 @@ export default function Project(props) {
       </div>
       <div className="c-project__info">
         <h1 className="c-project__title">{props.title}</h1>
+        <h2 className="c-date">{`${new Date(props.publishDate).getDay()+1} ${new Date(props.publishDate).toLocaleString('default', { month: 'long' }).toLowerCase()} ${new Date(props.publishDate).getFullYear()}`}</h2>
         <p className="c-project__description">{props.description}</p>
-        <Link href={link}>
+        <Link href={"projects/" +props.link}>
           <p className="c-project__readmore">Read more</p>
         </Link>
       </div>
