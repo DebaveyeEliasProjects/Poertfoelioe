@@ -8,8 +8,7 @@ export default function Project(props) {
 
   return (
     <div className="c-project">
-      <div className="c-project__image-holder">
-        <img className="c-project__image" src={props.img} alt=""/>
+      <div className="c-project__image-holder" style={{backgroundImage: `url(${props.img})`}}>
       </div>
       <div className="c-project__info">
         <h1 className="c-project__title">{props.title}</h1>
